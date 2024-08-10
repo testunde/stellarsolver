@@ -474,6 +474,7 @@ void solve(const QString &image_file, StellarSolverCliQuery *query)
     // TODO how is the unit of this selected in solve-field?
     printf("Field size: %f x %f arcminutes\n", solution.fieldWidth, solution.fieldHeight);
     printf("Field rotation angle: up is %f degrees E of N\n", solution.orientation);
+    printf("Field pixel scale: %f arcseconds/pixel\n", solution.pixscale);
     printf("Field parity: %s\n\n", FITSImage::getShortParityText(solution.parity).toUtf8().data());
 
     if (!query->save_fits_path.isEmpty())
