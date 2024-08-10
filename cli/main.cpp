@@ -397,11 +397,17 @@ CommandLineParseResult parseCommandLine(QCommandLineParser &parser, StellarSolve
 
     if (parser.isSet("built-in-profile"))
     {
-        int profileIndex = builtInProfileNames.indexOf(parser.value("built-in-profile"));
+        QString profile_name = parser.value("built-in-profile");
+        int profileIndex = builtInProfileNames.indexOf(profile_name);
         // when the list in argument is actually a built in profile
         if (profileIndex >= 0)
         {
             query->profile = (SSolver::Parameters::ParametersProfile)profileIndex;
+            printf("Using Profile: %s\n", profile_name.toUtf8().data());
+        }
+        else
+        {
+            return {Status::Error, "Profile not found: " + profile_name};
         }
     }
 
