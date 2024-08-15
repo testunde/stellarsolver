@@ -473,9 +473,9 @@ void solve(const QString &image_file, StellarSolverCliQuery *query)
     printf("Field center: (RA H:M:S, Dec D:M:S) = (%s, %s)\n", ra_dms.toHMSString(true).toUtf8().data(), dec_dms.toDMSString(true, true).toUtf8().data());
     // TODO how is the unit of this selected in solve-field?
     printf("Field size: %f x %f arcminutes\n", solution.fieldWidth, solution.fieldHeight);
+    printf("Pixel Scale: %f\"\n", solution.pixscale);
     printf("Field rotation angle: up is %f degrees E of N\n", solution.orientation);
-    printf("Field pixel scale: %f arcseconds/pixel\n", solution.pixscale);
-    printf("Field parity: %s\n\n", FITSImage::getShortParityText(solution.parity).toUtf8().data());
+    printf("Field parity: %s\n\n", FITSImage::getParityText(solution.parity).toUtf8().data());
 
     if (!query->save_fits_path.isEmpty())
     {
